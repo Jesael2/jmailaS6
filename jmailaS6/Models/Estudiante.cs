@@ -8,7 +8,7 @@ namespace jmailaS6.Models
 {
     public class Estudiante
     {
-        public string codigo {  get; set; }
+        public int Codigo {  get; set; }
         public string Nombre { get; set; }
 
         public string Apellido { get; set; }

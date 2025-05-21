@@ -12,7 +12,21 @@
             FontSize="20"
             HorizontalOptions="Center" />
 
-        <ListView x:Name="lvEstudiantes"
+        <Grid ColumnSpacing="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <Label Text="Código" FontAttributes="Bold" Grid.Column="0" />
+            <Label Text="Nombre" FontAttributes="Bold" Grid.Column="1" />
+            <Label Text="Apellido" FontAttributes="Bold" Grid.Column="2" />
+            <Label Text="Edad" FontAttributes="Bold" Grid.Column="3" />
+        </Grid>
+
+        <ListView x:Name="lvEstudiantes" ItemSelected="lvEstudiantes_ItemSelected"
                   HasUnevenRows="True"
                   SeparatorVisibility="None">
             <ListView.ItemTemplate>
@@ -45,6 +59,10 @@
             TextColor="Black"
             Padding="10"
             CornerRadius="10"/>
+
+        <Button x:Name="btnAñadir"
+                Text="Añadir estudiante"
+                Clicked="btnAñadir_Clicked"/>
 
     </VerticalStackLayout>
 </ContentPage>

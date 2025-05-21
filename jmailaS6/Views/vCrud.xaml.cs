@@ -19,22 +19,25 @@ public partial class vCrud : ContentPage
 
     public async void mostrarEstudiante()
     {
-        try
-        {
-            var conten = await cliente.GetStringAsync(URL);
-            var lista = JsonConvert.DeserializeObject<List<Estudiante>>(conten);
-
-            _estudianteTem = new ObservableCollection<Estudiante>(lista);
-            lvEstudiantes.ItemsSource = _estudianteTem;
-        }
-        catch (Exception ex)
-        {
-            await DisplayAlert("Error", $"No se pudo obtener la lista de estudiantes.\n{ex.Message}", "OK");
-        }
+        var content = await cliente.GetStringAsync(URL);
+        List<Estudiante> lista = JsonConvert.DeserializeObject<List<Estudiante>>(content);
+        _estudianteTem = new ObservableCollection<Estudiante>(lista);
+        lvEstudiantes.ItemsSource = _estudianteTem;
     }
 
     private  void Button_Clicked(object sender, EventArgs e)
     {
          mostrarEstudiante();
+    }
+
+    private void btnAñadir_Clicked(object sender, EventArgs e)
+    {
+        Navigation.PushAsync(new vAñadirEstudiante());
+    }
+
+    private void lvEstudiantes_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+    {
+        var objEstudiante = (Estudiante)e.SelectedItem;
+        Navigation.PushAsync(new vActElim(objEstudiante));
     }
 }
